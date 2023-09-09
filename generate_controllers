@@ -1,0 +1,3 @@
+php oil g controller auth login register --extends=Controller_Rest --with-test --force
+php oil g controller chat send delete threads --extends=Controller_Rest --with-test --force
+php oil g controller event list single participate --extends=Controller_Rest --with-test --force

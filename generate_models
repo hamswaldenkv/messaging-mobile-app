@@ -1,0 +1,91 @@
+php oil g model user \
+    user_id:varchar[75] \
+    username:varchar[75] \
+    password:varchar[150] \
+    email_address:varchar[75] \
+    email_validated:tinyint \
+    name:varchar[75] \
+    first_name:varchar[75] \
+    last_name:varchar[75] \
+    photo_url:varchar[200] \
+    birth_date:tinyint \
+    country_code:varchar[3] \
+    metafield:mediumtext account_state:int \
+    last_login:int \
+    --soft-delete --force
+
+php oil g model event \
+    event_id:varchar[75] \
+    title:varchar[75] \
+    description:varchar[300] \
+    photo_url:varchar[400] \
+    organisator_name:varchar[100] \
+    venue_place:varchar[100] \
+    venue_address:varchar[300] \
+    venue_location_latitude:double \
+    venue_location_longitude:double \
+    is_live:tinyint \
+    is_free:tinyint \
+    price_value:double \
+    price_currency:varchar[4] \
+    metafield:mediumtext \
+    count_participants:int \
+    status:int \
+    start_at:int \
+    finish_at:int \
+    --soft-delete --force
+
+
+php oil g model event_participant \
+    event_id:int \
+    user_id:int \
+    event_participant_id:varchar[75] \
+    status:int \
+    --soft-delete --force
+
+php oil g model chat_thread \
+    chat_thread_id:varchar[75] \
+    creator_user_id:int \
+    event_id:int \
+    kind:varchar[45] \
+    last_message:varchar[200] \
+    user_ids:mediumtext \
+    metafield:mediumtext \
+    status:int \
+    --soft-delete --force
+
+php oil g model chat_message \
+    chat_thread_id:int \
+    chat_message_id:varchar[75] \
+    user_id:int \
+    kind:varchar[45] \
+    content:mediumtext \
+    metafield:mediumtext \
+    status:int \
+    --soft-delete --force
+
+php oil g model user_device \
+    user_device_id:varchar[75] \
+    user_id:int \
+    name:varchar[45] \
+    unique_id:varchar[300] \
+    device_id:varchar[300] \
+    brand:varchar[100] \
+    model:varchar[100] \
+    platform:varchar[100] \
+    os_version:varchar[100] \
+    firebase_token:mediumtext \
+    status:int \
+    --soft-delete --force
+
+php oil g model access_token \
+    access_token_id:varchar[75] \
+    user_id:int \
+    type:varchar[45] \
+    scope:varchar[300] \
+    access_token:mediumtext \
+    refresh_token:mediumtext \
+    expires_at:int \
+    refreshed_at:int \
+    status:int \
+    --soft-delete --force
