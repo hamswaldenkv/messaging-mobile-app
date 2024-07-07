@@ -1,0 +1,18 @@
+php artisan make:controller EventController --model=Event --api
+php artisan make:controller ParticipantController --model=EventParticipant --api
+php artisan make:controller ChatController --model=Chat --api
+php artisan make:controller MessageController --model=ChatMessage --api --force
+php artisan make:controller DeviceController --model=UserDevice --api
+php artisan make:migration add_fields_to_users_table --table=users
+
+sudo ln -s /etc/nginx/sites-available/messaging-gw-01.ekonzostream.com /etc/nginx/sites-enabled/
+
+[program:queue-worker]
+process_name = %(program_name)s_%(process_num)02d
+command=php /var/www/html/messaging-backend/artisan queue:work --queue=high,default
+autostart=true
+autorestart=true
+user=root
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/var/www/html/messaging-backend/worker.log
